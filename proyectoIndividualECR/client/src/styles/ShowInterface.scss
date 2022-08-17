@@ -130,6 +130,7 @@ $colorFondo: #E6E6FA;
     justify-content: center;
 }
 .tarjetaLogin2{
+    margin-top: 85px;
     background: radial-gradient(#434343,#000000);
     border: 0;
     padding: 1em;
@@ -137,7 +138,7 @@ $colorFondo: #E6E6FA;
     border-radius: 50px 5px 50px 5px;
     width: 70%;
     max-width: 700px;
-    height: 80%;
+    height: 35em;
     animation: borde 7s linear infinite;
     display: flex;
     justify-content: space-between;

@@ -1,15 +1,18 @@
 import React,{useEffect,useState} from 'react';
 import Navigation from '../components/Navigation';
 import { Link,useNavigate } from 'react-router-dom';
+import {useForm} from 'react-hook-form';
 import axios from 'axios';
 import Login from './Login'
 
 const MisEquipos = () => {
     const navigate = useNavigate();
+    const{register,handleSubmit,formState:{errors}, reset} = useForm();
     const [searchSomething,setSearchSomething]= useState({message:''});
     const [refresh, setRefresh] = useState(true)
     const [myMaintenance,setMyMaintenance] = useState([]);
-    const [myMaintenanceState , setMyMaintenanceState] = useState(false)
+    const [myMaintenanceState , setMyMaintenanceState] = useState(false);
+    const [lastMaintenance,setLastMaintenance] = useState()
     const login = () =>{
         axios.get("http://localhost:8080/api/users/ingreso", {withCredentials:true})
             .then(res=>{
@@ -35,9 +38,9 @@ const MisEquipos = () => {
             const search = e.target.name;
             setSearchSomething(search)
         }
-        const handleSubmit= (e) =>{
+        const onSubmit= (e) =>{
             e.preventDefault()
-            setSearchSomething(searchSomething)
+            
         }
         const deleteEquipment = (equipmentId) =>{
             axios.delete('http://localhost:8080/api/mymaintenance/' + equipmentId)
@@ -69,16 +72,16 @@ const MisEquipos = () => {
                         Use esto como soporte, por tiempo jajaj
                     </div>
                 </div>
-                <div>
+                <form>
                     <table className="table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Equipo</th>
-                                <th scope="col">Ultimo Mantenimiento</th>
+                                <th scope="col">Contrato equipo</th>
                                 <th scope="col">Tecnico a cargo</th>
                                 <th scope="col">Estado de mantenimiento</th>
-                                <th scope="col">Mantenimiento actual</th>
+                                <th scope="col">Inicio mantenimiento</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -88,13 +91,13 @@ const MisEquipos = () => {
                                         <tr key={idx}>
                                             <th scope="row">{idx+1}</th>
                                             <td>{item.equipment}</td>
-                                            <td>{item.contract}</td>
+                                            <td>{item.contract?item.contract:"Sin contrato"}</td>
                                             <td>{item.technician}</td>
-                                            <td>{myMaintenanceState?'Realizado':'En Progreso'}</td>
-                                            <td></td>
+                                            <td>{myMaintenanceState?'Realizado':'En proceso'}</td>
+                                            <td>{item.maintenanceDate?.substring(0,10)}</td>
                                             <td>
                                                 <button onClick={(e)=>{deleteEquipment(item._id)}} className='button maintenanceButton'>
-                                                    Mantenimiento Terminado!
+                                                    Terminar
                                                 </button>
                                             </td>
                                         </tr>
@@ -103,7 +106,7 @@ const MisEquipos = () => {
                             }
                         </tbody>
                     </table>
-                </div>
+                </form>
             </div>
         </div>
     );

@@ -14,6 +14,7 @@ const Register = () => {
         name:'',
         email:'',
         password:'',
+        confirmPassword:""
     });
     const handleOnChange =(e) =>{
         const name = e.target.name;
@@ -26,6 +27,7 @@ const Register = () => {
             .post('http://localhost:8080/api/users/register',registration)
                 .then(res=>{
                     alert('Registrado con Exito!')
+                    navigate("/login")
                 })
                 .catch(err=>{
                     alert(`Mensaje desde el backEnd:
@@ -104,14 +106,31 @@ const Register = () => {
                                         {errors.password?.type === 'required' && <p style={{color:'white'}}>El campo no debe estar vacio</p>}
                                     </div>
                                 </div>
-                                <div className='registerContainer'>
+                                <div className='inputRow'>
+                                    <label style={{color:'white'}}>Confirm password: </label>
+                                    <div className='ErrorMsg'>
+                                        <input type="password" {
+                                            ...register(
+                                                'confirmPassword',{
+                                                    required:true,
+                                                }
+                                            )
+                                        }
+                                                id='confirmPassword'
+                                                onChange={(e)=> handleOnChange(e)}
+                                                className='inputStyle'
+                                        />
+                                        {errors.password?.type === 'required' && <p style={{color:'white'}}>El campo no debe estar vacio</p>}
+                                    </div>
+                                </div>
+                                <div className='registerContainer' style={{position:"relative",zIndex:"4"}}>
                                     <input type="submit" value={"Registrarse!"} className=' btnSubmit2 inputStyle'/>
                                         <p className='inputRow' style={{color:'white'}}>
                                             o &nbsp;
-                                        </p>
+                                        </p>2
                                         <div>
                                             <Link to="/login" style={{color:'white', textDecoration:'none'}}>
-                                                 Inicia sesión!
+                                                Inicia sesión!
                                             </Link>
                                         </div>
                                 </div>

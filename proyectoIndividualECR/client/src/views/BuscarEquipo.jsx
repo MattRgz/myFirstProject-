@@ -55,7 +55,13 @@ const BuscarEquipo = () => {
                 console.log(res)
             }
             )
-        .catch(err => console.log(err))
+        .catch(err => setMyContract({
+            contractType:'Equipo sin contrato',
+            startOfContract:'Equipo sin contrato',
+            contractTerm:'Equipo sin contrato',
+            equipmentOnContract:'Equipo sin contrato',
+            contractSupplier:'Equipo sin contrato',
+        }))
     }, []);
 
     return (
@@ -95,15 +101,15 @@ const BuscarEquipo = () => {
                     </tr>
                     <tr>
                         <th>Tipo de Contrato:</th>
-                        <td>{myContract.contractType}</td>
+                        <td>{myContract.contractType? myContract.contractType:"Equipo sin contrato"}</td>
                     </tr>
                     <tr>
                         <th>Inicio de contrato:</th>
-                        <td>{myContract.startOfContract.slice(0,10)}</td>
+                        <td>{myContract.startOfContract?.slice(0,10)}</td>
                     </tr>
                     <tr>
                         <th>Termino de contrato:</th>
-                        <td>{myContract.contractTerm.slice(0,10)}</td>
+                        <td>{myContract.contractTerm?.slice(0,10)}</td>
                     </tr>
                     <tr>
                         <th>Proveedor:</th>

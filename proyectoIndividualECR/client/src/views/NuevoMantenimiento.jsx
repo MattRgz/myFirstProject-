@@ -3,7 +3,6 @@ import Navigation from '../components/Navigation';
 import { Link, useParams,useNavigate} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import axios from 'axios';
-import { set } from 'mongoose';
 import CreateImg from '../components/CreateImg';
 
 
@@ -14,6 +13,7 @@ const NuevoMantenimiento = () => {
     const [myForm, setMyForm] = useState({
         technician:'',
         equipment:equipmentSerialNumber,
+        maintenanceDate: new Date().toDateString(),
     });
     const [myContract, setMyContract] = useState({
         contractType:'',
@@ -101,7 +101,7 @@ const onSubmit = (e) =>{
                                     )}
                                     id='equipment'
                                     onChange={(e)=> handleOnChange(e)}
-                                    value={myContract.equipmentOnContract}
+                                    value={myContract? myContract.equipmentOnContract:"Equipo sin contrato"}
                                     disabled
                                     className='inputStyle'
                                 />
@@ -122,17 +122,17 @@ const onSubmit = (e) =>{
                                     className='inputStyle'
                                 >
                                     <option value="">Seleccione una opcion</option>
-                                    {myColaborator.map((item,idx)=>{
+                                    {myColaborator?.map((item,idx)=>{
                                         return(
-                                            <option value={`${item.colaboratorName}`}>{item.colaboratorName}</option>
-                                        ) 
+                                            <option value={`${item.colaboratorName? item.colaboratorName:null}`}>{item.colaboratorName?item.colaboratorName:null}</option>
+                                        )
                                     })}
                                 </select>
                                 {errors.technician?.type === 'required' && <p style={{color:'white'}}>El campo no debe estar vacio</p>}
                             </div>
                         </div>
                         {
-                            equipmentSerialNumber===myContract.equipmentOnContract?<input type="submit" value="Crear" className='interfaceSubmitBoton'/>: <h3  style={{color:'white'}}> Equipo sin contrato! </h3>
+                            equipmentSerialNumber===myContract.equipmentOnContract? <input type="submit" value="Crear" className='interfaceSubmitBoton'/> : <h3  style={{color:'white', textAlign:"center"}}> Equipo sin contrato! </h3>
                         }
                     </form>
                 </div>
@@ -144,5 +144,4 @@ const onSubmit = (e) =>{
         </div>
     );
 }
-// PROBLEMA COMPONENTE: NO PUEDO AGREGAR MANTENIMIENTO SI NO HAGO CLICK EN EL CAMPO
 export default NuevoMantenimiento;
