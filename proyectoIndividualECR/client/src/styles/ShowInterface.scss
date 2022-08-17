@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300&display=swap');
+$colorFondo: #E6E6FA;
+*{
+    font-family: 'Nunito', sans-serif;
+    color: black;
+}
+
+.bg{
+    width: 100%;
+    height: 100%;
+    background-color: $colorFondo;
+    position: absolute;
+    top: 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+.upper{
+    display: flex;
+    margin-top: 3%;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.button{
+    border-radius: 1px 10px 1px 10px;
+    animation: inputBorder 7s linear infinite;
+    border: 0;
+    box-shadow: 3px 4px 4px 2px #42275a;
+    color: black;
+    padding: 8px 12px 8px 12px;
+    position:absolute;
+&:hover{
+        transition: 0.5s;
+        width:11em;
+        letter-spacing: 2px;
+        background-color: #42275a;
+        color: white;
+        box-shadow: 2px 2px 3px 1px #434343;
+}
+&:not(:hover){
+    transition: 0.5s;
+    letter-spacing: 0.5px;
+    color: white;
+    width: 10em;
+    background-color: #434343;
+    box-shadow: 2px 2px 3px 1px #42275a;
+}
+}
+.tableButton{
+    position: relative;
+    margin-left: 10px;
+    font-size: 70%;
+}
+.tableMaintenanceButton{
+    width: 10px;
+    border-radius: 1px 10px 1px 10px;
+    animation: inputBorder 7s linear infinite;
+    border: 0;
+    box-shadow: 3px 4px 4px 2px #42275a;
+    padding-left: 10px;
+    color: black;
+    padding: 5px;
+    position:absolute;
+}
+.maintenanceButton{
+    position: relative;
+    margin-left: 10px;
+    font-size: 80%;
+    border-radius: 1px 10px 1px 10px;
+    animation: inputBorder 7s linear infinite;
+    border: 0;
+    box-shadow: 3px 4px 4px 2px #42275a;
+    padding-left: 10px;
+    color: black;
+    padding: 5px;
+&:hover{
+        transition: 0.5s;
+        width: 10em;
+        letter-spacing: 2px;
+        background-color: #42275a;
+        color: white;
+        box-shadow: 2px 2px 3px 1px #434343;
+}
+&:not(:hover){
+    transition: 0.5s;
+    letter-spacing: 0.5px;
+    color: white;
+    width: 9em;
+    background-color: #434343;
+    box-shadow: 2px 2px 3px 1px #42275a;
+}
+}
+.InterfaceFormContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+}
+.interfaceSubmitBoton{
+    border-radius: 1px 10px 1px 10px;
+    animation: inputBorder 7s linear infinite;
+    border: 0;
+    box-shadow: 3px 4px 4px 2px #42275a;
+    color: black;
+    padding: 8px 12px 8px 12px;
+&:hover{
+        transition: 0.5s;
+        width: 101%;
+        letter-spacing: 2px;
+        background-color: #42275a;
+        color: white;
+        box-shadow: 2px 2px 3px 1px #434343;
+}
+&:not(:hover){
+    transition: 0.5s;
+    letter-spacing: 0.5px;
+    color: white;
+    width: 100%;
+    background-color: #434343;
+    box-shadow: 2px 2px 3px 1px #42275a;
+}
+}
+.interfaceSubmitBotonContainer{
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+.tarjetaLogin2{
+    background: radial-gradient(#434343,#000000);
+    border: 0;
+    padding: 1em;
+    box-shadow: 1px 5px 10px 5px #000000;
+    border-radius: 50px 5px 50px 5px;
+    width: 70%;
+    max-width: 700px;
+    height: 80%;
+    animation: borde 7s linear infinite;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@keyframes borde {
+    0%,100%{
+        border-radius: 50px 5px 50px 5px;
+    }
+    50%{
+        border-radius: 5px 50px 5px 50px;
+    }
+}
