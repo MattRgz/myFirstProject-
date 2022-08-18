@@ -3,6 +3,7 @@ import Navigation from '../components/Navigation';
 import { Link,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/ShowInterface.scss';
+import Swal from 'sweetalert2';
 
 const MisEquipos = () => {
     const [equipment, setEquipment] = useState([]);
@@ -18,6 +19,12 @@ const MisEquipos = () => {
                     navigate('/login')
                 }
             )
+    }
+    const succesAlert = (mensaje) =>{
+        Swal.fire({
+            icon: 'success',
+            text: mensaje,
+        })
     }
     useEffect(() => {
         login();
@@ -43,7 +50,7 @@ const MisEquipos = () => {
         const deleteEquipment = (equipmentId) =>{
             axios.delete('http://localhost:8080/api/myequipment/' + equipmentId)
                 .then(res =>{
-                    alert('Equipo Correctamente Eliminado')
+                    succesAlert('Equipo Correctamente Eliminado')
                     setRefresh(!refresh)
                 })
                 .catch((err) => {

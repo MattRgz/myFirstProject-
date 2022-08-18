@@ -5,6 +5,7 @@ import {useForm} from 'react-hook-form';
 import axios from 'axios';
 import Login from './Login';
 import CreateImg from '../components/CreateImg';
+import Swal from 'sweetalert2';
 
 const NuevoEquipo = () => {
     const navigate = useNavigate();
@@ -38,12 +39,19 @@ const NuevoEquipo = () => {
         const value = e.target.value;
         setMyForm((values)=>({...values,[name]:value}))
     }
+    const succesAlert = (mensaje) =>{
+        Swal.fire({
+            icon: 'success',
+            text: mensaje,
+        })
+    }
     const onSubmit = (e) =>{
         setMyForm(myForm);
         axios
             .post('http://localhost:8080/api/myequipment',myForm)
                 .then(res=>{
-                    alert('equipo Agregado!')
+                    succesAlert('Equipo correctamente agregado!')
+                    navigate("/")
                 })
                 .catch(err=>{
                     alert(`Mensaje desde el backEnd:

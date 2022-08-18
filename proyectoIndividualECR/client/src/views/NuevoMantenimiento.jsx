@@ -4,7 +4,7 @@ import { Link, useParams,useNavigate} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import axios from 'axios';
 import CreateImg from '../components/CreateImg';
-
+import Swal from 'sweetalert2';
 
 const NuevoMantenimiento = () => {
     const navigate = useNavigate();
@@ -35,6 +35,12 @@ const NuevoMantenimiento = () => {
                 }
             )
     }
+    const succesAlert = (mensaje) =>{
+        Swal.fire({
+            icon: 'success',
+            text: mensaje,
+        })
+    }
 useEffect(() => {
     login()
 
@@ -61,13 +67,12 @@ const handleOnChange = (e) => {
     
 
 const onSubmit = (e) =>{
-    console.log("22222",myForm)
     setMyForm(myForm);
-    console.log("11111",myForm)
     axios
         .post('http://localhost:8080/api/mymaintenance',myForm)
             .then(res=>{
-                alert('Mantenimiento Agregado!')
+                succesAlert('Mantenimiento correctamente agregado!')
+                navigate("../mis-mantenimientos")
             })
             .catch(err=>{
                 alert(`Mensaje desde el backEnd:

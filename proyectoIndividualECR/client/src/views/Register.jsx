@@ -21,7 +21,7 @@ const Register = () => {
         Swal.fire({
             icon: 'success',
             title: 'Todo en orden!',
-            text: {mensaje},
+            text: mensaje,
         })
     }
     const handleOnChange =(e) =>{

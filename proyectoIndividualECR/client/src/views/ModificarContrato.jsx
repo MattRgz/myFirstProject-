@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import React,{useState,useEffect} from 'react';
 import Login from './Login'
 import UpdateImg from '../components/UpdateImg';
+import Swal from 'sweetalert2';
 
 
 const ModificarContrato= (props) =>{
@@ -28,6 +29,12 @@ const ModificarContrato= (props) =>{
                     navigate('/login')
                 }
             )
+    }
+    const succesAlert = (mensaje) =>{
+        Swal.fire({
+            icon: 'success',
+            text: mensaje,
+        })
     }
     useEffect(() => {
         login()
@@ -54,7 +61,8 @@ const ModificarContrato= (props) =>{
         axios
             .put('http://localhost:8080/api/mycontract/'+id,myForm)
                 .then(res=>{
-                    alert('Contrato Actualizado!')
+                    navigate("../../mis-contratos")
+                    succesAlert('Contrato correctamente actualizado!')
                 })
                 .catch(err=>{
                     alert(`Mensaje desde el backEnd:

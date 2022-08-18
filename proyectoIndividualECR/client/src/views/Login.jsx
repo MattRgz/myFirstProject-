@@ -5,6 +5,7 @@ import axios from 'axios';
 import "../styles/Login.scss"
 import ImgTwo from '../components/imgTwo';
 import ImgLogo from '../components/ImgLogo';
+import Swal from 'sweetalert2';
 
 
 const Login = () => {
@@ -15,6 +16,13 @@ const Login = () => {
         email:'',
         password:'',
     });
+    const succesAlert = (mensaje) =>{
+        Swal.fire({
+            icon: 'success',
+            title: 'Todo en orden!',
+            text: mensaje,
+        })
+    }
     const handleOnChange =(e) =>{
         const name = e.target.name;
         const value = e.target.value;
@@ -24,7 +32,7 @@ const Login = () => {
         axios
             .post('http://localhost:8080/api/users/login',login, {withCredentials:true})
                 .then(res=>{
-                    alert('Bienvenido!')
+                    succesAlert('Bienvenido!')
                     navigate("/")
                 })
                 .catch(err=>{

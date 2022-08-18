@@ -3,7 +3,8 @@ import Navigation from '../components/Navigation';
 import { Link,useNavigate } from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import axios from 'axios';
-import Login from './Login'
+import Login from './Login';
+import Swal from 'sweetalert2';
 
 const MisEquipos = () => {
     const navigate = useNavigate();
@@ -22,6 +23,12 @@ const MisEquipos = () => {
                     navigate('/login')
                 }
             )
+    }
+    const succesAlert = (mensaje) =>{
+        Swal.fire({
+            icon: 'success',
+            text: mensaje,
+        })
     }
     useEffect(() => {
         login();
@@ -45,8 +52,8 @@ const MisEquipos = () => {
         const deleteEquipment = (equipmentId) =>{
             axios.delete('http://localhost:8080/api/mymaintenance/' + equipmentId)
                 .then(res =>{
-                    alert('Equipo Correctamente Eliminado')
                     setRefresh(!refresh)
+                    succesAlert('Equipo correctamente eliminado') 
                 })
                 .catch((err) => {
                     alert(`Mensaje desde el back-End:

@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Login from './Login';
 import UpdateImg from '../components/UpdateImg';
+import Swal from 'sweetalert2';
 
 const ModificarEquipo = () => {
     const navigate = useNavigate();
@@ -22,6 +23,12 @@ const ModificarEquipo = () => {
         accessories:'',
         lastMaintenance:'',
     });
+    const succesAlert = (mensaje) =>{
+        Swal.fire({
+            icon: 'success',
+            text: mensaje,
+        })
+    }
     const login = () =>{
         axios.get("http://localhost:8080/api/users/ingreso", {withCredentials:true})
             .then(res=>{
@@ -56,7 +63,8 @@ const ModificarEquipo = () => {
         axios
             .put('http://localhost:8080/api/myequipment/'+id,myForm)
                 .then(res=>{
-                    alert('equipo Actualizado!')
+                    navigate("/")
+                    succesAlert('Equipo correctamente actualizado!')
                 })
                 .catch(err=>{
                     alert(`Mensaje desde el backEnd:

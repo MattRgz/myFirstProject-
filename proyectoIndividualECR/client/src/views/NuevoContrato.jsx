@@ -5,6 +5,7 @@ import {useForm} from 'react-hook-form';
 import axios from 'axios';
 import Login from './Login'
 import CreateImg from '../components/CreateImg';
+import Swal from 'sweetalert2';
 
 const NuevoContrato = () => {
     const navigate = useNavigate();
@@ -16,6 +17,12 @@ const NuevoContrato = () => {
         equipmentOnContract:'',
         contractSupplier:'',
     });
+    const succesAlert = (mensaje) =>{
+        Swal.fire({
+            icon: 'success',
+            text: mensaje,
+        })
+    }
     const login = () =>{
         axios.get("http://localhost:8080/api/users/ingreso", {withCredentials:true})
             .then(res=>{
@@ -39,7 +46,8 @@ const NuevoContrato = () => {
         axios
             .post('http://localhost:8080/api/mycontract',myForm)
                 .then(res=>{
-                    alert('Contrato Agregado!')
+                    navigate("/mis-contratos")
+                    succesAlert('Contrato correctamente agregado!')      
                 })
                 .catch(err=>{
                     alert(`Mensaje desde el backEnd:

@@ -4,6 +4,7 @@ import { Link,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Login from './Login';
 import '../styles/ShowInterface.scss';
+import Swal from 'sweetalert2';
 
 const MisContratos = () => {
     const navigate = useNavigate();
@@ -19,6 +20,12 @@ const MisContratos = () => {
                     navigate('/login')
                 }
             )
+    }
+    const succesAlert = (mensaje) =>{
+        Swal.fire({
+            icon: 'success',
+            text: mensaje,
+        })
     }
     useEffect(() => {
         login()
@@ -44,7 +51,7 @@ const MisContratos = () => {
         const deleteContract = (contractId) =>{
             axios.delete('http://localhost:8080/api/mycontract/' + contractId)
                 .then(res =>{
-                    alert('Contrato Correctamente Eliminado')
+                    succesAlert('Contrato correctamente eliminado')
                     setRefresh(!refresh)
                 }
                 )

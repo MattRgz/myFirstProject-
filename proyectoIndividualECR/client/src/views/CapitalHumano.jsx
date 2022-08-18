@@ -3,6 +3,7 @@ import Navigation from '../components/Navigation';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Login from './Login';
+import Swal from 'sweetalert2';
 
 const CapitalHumano = () => {
     const navigate = useNavigate();
@@ -18,6 +19,12 @@ const CapitalHumano = () => {
                     navigate('/login')
                 }
             )
+    }
+    const succesAlert = (mensaje) =>{
+        Swal.fire({
+            icon: 'success',
+            text: mensaje,
+        })
     }
     useEffect(() => {
         login()
@@ -43,7 +50,7 @@ const CapitalHumano = () => {
         const deleteContract = (contractId) =>{
             axios.delete('http://localhost:8080/api/mycolaborator/' + contractId)
                 .then(res =>{
-                    alert('Colaborador correctamente Eliminado')
+                    succesAlert('Colaborador correctamente eliminado')
                     setRefresh(!refresh)
                 })
                 .catch((err) => {

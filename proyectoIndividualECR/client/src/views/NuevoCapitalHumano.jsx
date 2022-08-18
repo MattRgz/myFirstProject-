@@ -5,6 +5,7 @@ import {useForm} from 'react-hook-form';
 import axios from 'axios';
 import Login from './Login'
 import CreateImg from '../components/CreateImg'
+import Swal from 'sweetalert2';
 
 
 const NuevoCapitalHumano = () => {
@@ -34,12 +35,19 @@ const NuevoCapitalHumano = () => {
         const value = e.target.value;
         setMyForm((values)=>({...values,[name]:value}))
     }
+    const succesAlert = (mensaje) =>{
+        Swal.fire({
+            icon: 'success',
+            text: mensaje,
+        })
+    }
     const onSubmit = (e) =>{
         setMyForm(myForm);
         axios
             .post('http://localhost:8080/api/mycolaborator',myForm)
                 .then(res=>{
-                    alert('Colaborador Agregado!')
+                    navigate("/capital-humano")
+                    succesAlert('Colaborador correctamente agregado!')
                 })
                 .catch(err=>{
                     alert(`Mensaje desde el backEnd:

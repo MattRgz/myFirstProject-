@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import React,{useState,useEffect} from 'react';
 import Login from './Login';
 import UpdateImg from '../components/UpdateImg';
+import Swal from 'sweetalert2';
 
 const NuevoCapitalHumano = () => {
     const navigate = useNavigate();
@@ -17,6 +18,12 @@ const NuevoCapitalHumano = () => {
         colaboratorCharge:'',
         colaboratorArea:'',
     });
+    const succesAlert = (mensaje) =>{
+        Swal.fire({
+            icon: 'success',
+            text: mensaje,
+        })
+    }
     const login = () =>{
         axios.get("http://localhost:8080/api/users/ingreso", {withCredentials:true})
             .then(res=>{
@@ -50,7 +57,8 @@ const NuevoCapitalHumano = () => {
         axios
             .put('http://localhost:8080/api/mycolaborator/'+id,myForm)
                 .then(res=>{
-                    alert('Mantenimiento Agregado!')
+                    navigate("/capital-humano")
+                    succesAlert('Colaborador correctamente actualizado!')
                 })
                 .catch(err=>{
                     alert(`Mensaje desde el backEnd:
