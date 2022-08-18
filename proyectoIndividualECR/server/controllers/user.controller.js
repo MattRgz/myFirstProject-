@@ -10,13 +10,13 @@ module.exports.register = async (req,res) => {
         return res.status(500).json({ msg: 'No hemos podido registrar el usuario!', error: err});
     }
 }
-module.exports.logout = (_, res) => {
+module.exports.logout = async (_, res) => {
     try {
         return res.clearCookie("usertoken").json({msg:"token eliminado"})
     } catch (err){
         return res.status(403).json({msg:"usuario sin token", err})
     }
-  }
+}
 
 module.exports.login = async (req, res) => {
     try{

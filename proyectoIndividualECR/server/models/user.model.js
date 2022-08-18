@@ -18,7 +18,6 @@ const UserSchema = new Schema({
     }
 },{timestamps:true});
 
-UserSchema.plugin(uniqueValidator);
 
 UserSchema.virtual('confirmPassword')
   .get(() => this._confirmPassword)
@@ -39,7 +38,7 @@ UserSchema.pre('save', function(next) {
         next();
         });
 });
-
+UserSchema.plugin(uniqueValidator);
 const User = model('User',UserSchema);
 
 module.exports = User;

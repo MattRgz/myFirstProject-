@@ -6,6 +6,7 @@ import "../styles/Login.scss"
 import ImgTwo from '../components/imgTwo';
 import ImgLogo from '../components/ImgLogo';
 import ImgOne from '../components/ImgOne';
+import Swal from 'sweetalert2'
 
 const Register = () => {
     const{register,handleSubmit,formState:{errors}} = useForm();
@@ -16,6 +17,13 @@ const Register = () => {
         password:'',
         confirmPassword:""
     });
+    const succesAlert = (mensaje) =>{
+        Swal.fire({
+            icon: 'success',
+            title: 'Todo en orden!',
+            text: {mensaje},
+        })
+    }
     const handleOnChange =(e) =>{
         const name = e.target.name;
         const value = e.target.value;
@@ -26,11 +34,11 @@ const Register = () => {
         axios
             .post('http://localhost:8080/api/users/register',registration)
                 .then(res=>{
-                    alert('Registrado con Exito!')
+                    succesAlert('Registrado con Exito!')
                     navigate("/login")
                 })
                 .catch(err=>{
-                    alert(`Mensaje desde el backEnd:
+                    console.log(`Mensaje desde el backEnd:
                     ${err.response.data.msg}:
                     ${err.response.data.error.message}`)
                     console.log(err)
