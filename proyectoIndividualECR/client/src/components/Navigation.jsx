@@ -51,13 +51,15 @@ const Navigation = () => {
                             <li className='oneLink'>Capital Humano</li>
                         </Link>
                     </div>
-                    <div className='linkContainer'>
+                    {/* <div className='linkContainer'>
                         <Link to={"/mis-mantenimientos"} style={{ textDecoration: 'none' }}>
                             <li className='oneLink'>Mis Mantenimientos</li>
                         </Link>
-                    </div>
-                    <div className='linkContainer' style={{marginLeft:"30px", cursor:"pointer", textAlign:"center"}}>
+                    </div> */}
+                    <div className='linkContainer' style={{cursor:"pointer", textAlign:"center"}}>
+                        <Link to={"/login-out"} style={{ textDecoration: 'none' }}>
                             <li className='oneLink'>Cerrar sesión</li>
+                        </Link>
                     </div>
                 </ul>
             </nav>

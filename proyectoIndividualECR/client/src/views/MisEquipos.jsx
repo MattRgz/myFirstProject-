@@ -85,40 +85,40 @@ const MisEquipos = () => {
                         </thead>
                         <tbody>
                             {   
-                                            equipment.map((item,idx)=>{
-                                                return(
-                                                    <tr key={idx}>
-                                                        <th scope="row">{idx+1}</th>
-                                                        <td>{item.equipmentModel}</td>
-                                                        <td>{item.equipmentSerialNumber}</td>
-                                                        <td>{item.equipmentState}</td>
-                                                        <td>{item.equipmentUbication}</td>
-                                                        <td>{item.accessories}</td>
-                                                        <div>
-                                                            <td>
-                                                                <Link to={'/'+item._id+'/edit'}>
-                                                                    <button className='button tableButton'>
-                                                                        Editar
-                                                                    </button>
-                                                                </Link>
-                                                                <Link to={'/buscando/'+item.equipmentSerialNumber}>
-                                                                    <button className='button tableButton'>
-                                                                        Detalle
-                                                                    </button>
-                                                                </Link>
-                                                                <Link to={'/mantenimiento/'+item.equipmentSerialNumber}>
-                                                                    <button className='button tableButton'>
-                                                                        Mantenimiento
-                                                                    </button>
-                                                                </Link>
-                                                                <button onClick={(e)=>{deleteEquipment(item._id)}} className='button tableButton'>
-                                                                    Eliminar
-                                                                </button>
-                                                            </td>
-                                                        </div>
-                                                    </tr>
-                                                )
-                                            })
+                                equipment.map((item,idx)=>{
+                                    return(
+                                        <tr key={idx}>
+                                            <th scope="row">{idx+1}</th>
+                                            <td>{item.equipmentModel}</td>
+                                            <td>{item.equipmentSerialNumber}</td>
+                                            <td>{item.equipmentState}</td>
+                                            <td>{item.equipmentUbication}</td>
+                                            <td>{item.accessories}</td>
+                                            <div>
+                                                <td>
+                                                    <Link to={'/'+item._id+'/edit'}>
+                                                        <button className='button tableButton'>
+                                                            Editar
+                                                        </button>
+                                                    </Link>
+                                                    <Link to={'/buscando/'+item.equipmentSerialNumber}>
+                                                        <button className='button tableButton'>
+                                                            Detalle
+                                                        </button>
+                                                    </Link>
+                                                    {/* <Link to={'/mantenimiento/'+item.equipmentSerialNumber}>
+                                                        <button className='button tableButton'>
+                                                            Mantenimiento
+                                                        </button>
+                                                    </Link> */}
+                                                    <button onClick={(e)=>{deleteEquipment(item._id)}} className='button tableButton'>
+                                                        Eliminar
+                                                    </button>
+                                                </td>
+                                            </div>
+                                        </tr>
+                                    )
+                                })
                                         }
                                 {/* })
                             } */}

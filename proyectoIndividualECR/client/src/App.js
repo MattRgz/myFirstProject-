@@ -16,7 +16,8 @@ import BuscarEquipo from './views/BuscarEquipo';
 import NuevoMantenimiento from './views/NuevoMantenimiento';
 import Login from './views/Login'
 import Register from './views/Register';
-import {UsersContextProvider} from './context/UserContext'
+import {UsersContextProvider} from './context/UserContext';
+import LoginOut from './views/LoginOut';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             <Route exact path='//mantenimiento/:equipmentSerialNumber' element={<NuevoMantenimiento/>}/>
             <Route exact path='/login' element={<Login/>}/>
             <Route exact path='/register' element={<Register/>}/>
+            <Route exact path='/login-out' element={<LoginOut/>}/>
           </Routes>
         </BrowserRouter>
       </div>
