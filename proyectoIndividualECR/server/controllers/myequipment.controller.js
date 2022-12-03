@@ -1,7 +1,9 @@
 const { MyEquipment} = require("../models/myequipment.model")
 
 module.exports.createMyEquipment = (req, res) => {
-  const { equipmentModel, equipmentSerialNumber, equipmentState, observation, maintenanceState,equipmentUbication,equipmentType,accessories,contract} = req.body;
+  const { equipmentModel, equipmentSerialNumber, 
+    equipmentState, observation, maintenanceState,equipmentUbication,equipmentType,
+    accessories,contract} = req.body;
   MyEquipment.create(req.body)
     .then((myequipment) => res.json(myequipment))
     .catch((err) => res.status(500).json({ error: err, msg:'Ups! no hemos podido crear tu equipo!'}));
